@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rspec/rspec-core.git
-  revision: 8c5717b05c820fdc91faf277164b36a2a31b6c08
+  revision: fb72dbb11ecd46203eb2a0b89f8d03e9676dd6bc
   branch: master
   specs:
     rspec-core (3.6.0.beta1)
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-expectations.git
-  revision: f07af78f18abe02f2478db8a47cd341146b0ba02
+  revision: 4d3a2cd1490c88e6d367e51160cf40925fc6bc2d
   branch: master
   specs:
     rspec-expectations (3.6.0.beta1)
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-mocks.git
-  revision: c0bf45b5ceb179c51b0d38d7c91faf60a7a6048f
+  revision: 312c34b7d6a2cb44124968efe767134165218885
   branch: master
   specs:
     rspec-mocks (3.6.0.beta1)
@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-rails.git
-  revision: 48f152bc16dda8c3f90edf9fb58714c01e71188a
+  revision: 848b0adf8c2e2875e1680c3934d9f050febd2477
   branch: master
   specs:
     rspec-rails (3.6.0.beta1)
@@ -40,7 +40,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-support.git
-  revision: 52858b626baae90cf58d539790f6e6a6892334af
+  revision: 27b67a718ab173b8a2ab18c9fa91c25afe5671cd
   branch: master
   specs:
     rspec-support (3.6.0.beta1)
@@ -122,7 +122,7 @@ GEM
       capistrano (~> 3.0)
       puma (>= 2.6)
     choice (0.2.0)
-    codeclimate-test-reporter (1.0.0)
+    codeclimate-test-reporter (1.0.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)

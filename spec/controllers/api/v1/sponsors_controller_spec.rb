@@ -23,61 +23,61 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe Api::V1::FaqsController, type: :controller do
+RSpec.describe Api::V1::SponsorsController, type: :controller do
+
   # This should return the minimal set of attributes required to create a valid
-  # Faq. As you add validations to Faq, be sure to
+  # Sponsor. As you add validations to Sponsor, be sure to
   # adjust the attributes here as well.
-
-  before do
-    valid_creator = FactoryGirl.create :faq_director
-    user_authorization_header valid_creator.user.auth_token
-  end
-
   let(:valid_attributes) {
-    {:question => "question", :answer => "answer", :display => 1, :priority => 2 }
+    skip("Add a hash of attributes valid for your model")
   }
 
   let(:invalid_attributes) {
-    {:question => nil, :answer => nil}
+    skip("Add a hash of attributes invalid for your model")
   }
+
+  # This should return the minimal set of values that should be in the session
+  # in order to pass any filters (e.g. authentication) defined in
+  # SponsorsController. Be sure to keep this updated too.
+  let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      faq = Faq.create! valid_attributes
-      get :index, params: {id: faq.id}
+      sponsor = Sponsor.create! valid_attributes
+      get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "GET #show" do
     it "returns a success response" do
-      faq = Faq.create! valid_attributes
-      get :show, params: {id: faq.to_param}
+      sponsor = Sponsor.create! valid_attributes
+      get :show, params: {id: sponsor.to_param}, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Faq" do
+      it "creates a new Sponsor" do
         expect {
-          post :create, params: {faq: valid_attributes}
-        }.to change(Faq, :count).by(1)
+          post :create, params: {sponsor: valid_attributes}, session: valid_session
+        }.to change(Sponsor, :count).by(1)
       end
 
-      it "renders a JSON response with the new faq" do
+      it "renders a JSON response with the new sponsor" do
 
-        post :create, params: {faq: valid_attributes}
+        post :create, params: {sponsor: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(api_faq_url(Faq.last))
+        expect(response.location).to eq(sponsor_url(Sponsor.last))
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new faq" do
+      it "renders a JSON response with errors for the new sponsor" do
 
-        post :create, params: {faq: invalid_attributes}
+        post :create, params: {sponsor: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -87,32 +87,30 @@ RSpec.describe Api::V1::FaqsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        {:question => "question2", :answer => "answer2"}
+        skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested faq" do
-        faq = Faq.create! valid_attributes
-        put :update, params: {id: faq.to_param, faq: new_attributes}
-        faq.reload
-        new_attributes.each_pair do |key, value|
-          expect(faq[key]).to eq(value)
-        end
+      it "updates the requested sponsor" do
+        sponsor = Sponsor.create! valid_attributes
+        put :update, params: {id: sponsor.to_param, sponsor: new_attributes}, session: valid_session
+        sponsor.reload
+        skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the faq" do
-        faq = Faq.create! valid_attributes
+      it "renders a JSON response with the sponsor" do
+        sponsor = Sponsor.create! valid_attributes
 
-        put :update, params: {id: faq.to_param, faq: valid_attributes}
+        put :update, params: {id: sponsor.to_param, sponsor: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the faq" do
-        faq = Faq.create! valid_attributes
+      it "renders a JSON response with errors for the sponsor" do
+        sponsor = Sponsor.create! valid_attributes
 
-        put :update, params: {id: faq.to_param, faq: invalid_attributes}
+        put :update, params: {id: sponsor.to_param, sponsor: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -120,29 +118,11 @@ RSpec.describe Api::V1::FaqsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    context "director tries to delete" do
-      before do
-        @faq = FactoryGirl.create :faq_director
-        user_authorization_header @faq.user.auth_token
-      end
-
-      it "destroys the requested faq" do
-        expect {
-          delete :destroy, params: {id: @faq.id}
-        }.to change(Faq, :count).by(-1)
-      end
-    end
-
-    context "hacker tries to delete" do
-      before do
-        @faq = FactoryGirl.create :faq_hacker
-        user_authorization_header @faq.user.auth_token
-        delete :destroy, params: {id: @faq.id}
-      end
-
-      it "does not destroy the requested faq" do
-        expect(json_response[:api]).to eql ["Access Denied"]
-      end
+    it "destroys the requested sponsor" do
+      sponsor = Sponsor.create! valid_attributes
+      expect {
+        delete :destroy, params: {id: sponsor.to_param}, session: valid_session
+      }.to change(Sponsor, :count).by(-1)
     end
   end
 

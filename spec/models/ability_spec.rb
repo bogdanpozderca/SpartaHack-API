@@ -28,15 +28,12 @@ RSpec.describe Ability do
     let(:user){ FactoryGirl.create(:user) }
     subject(:ability){ Ability.new(user) }
 
-    context "not be able to create update destroy Faq" do
-      %i[create update destroy].each do |role|
-        it{ is_expected.to_not be_able_to(role, Faq.create({:question => "question", :answer => "answer", :user_id => user.id})) }
-      end
+    %i[create update destroy].each do |role|
+      it{ is_expected.to_not be_able_to(role, Faq.create({:question => "question", :answer => "answer", :user_id => user.id})) }
     end
 
-    context "be able to read Faq" do
-      it{ is_expected.to be_able_to(:read, Faq.create({:question => "question", :answer => "answer", :user_id => user.id})) }
-    end
+    it{ is_expected.to_not be_able_to("index", User.create()) }
+    it{ is_expected.to be_able_to(:read, Faq.create({:question => "question", :answer => "answer", :user_id => user.id})) }
   end
 
   context "a guest should" do
